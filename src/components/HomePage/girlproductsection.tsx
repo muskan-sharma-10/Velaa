@@ -1,0 +1,120 @@
+import Image from "next/image";
+import Link from "next/link";
+
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  oldPrice?: number;
+  bgColor: string;
+  outOfStock?: boolean;
+}
+
+const products: Product[] = [
+  {
+    id: 1,
+    name: "Serene Flow Dress",
+    image: "/images/product-1.avif",
+    price: 100,
+    oldPrice: 177,
+    bgColor: "bg-pink-100",
+  },
+  {
+    id: 2,
+    name: "Mist Ruffle Top",
+    image: "/images/product-2.avif",
+    price: 113,
+    oldPrice: 160,
+    bgColor: "bg-yellow-100",
+  },
+  {
+    id: 3,
+    name: "Willow Knit Top",
+    image: "/images/product-3.avif",
+    price: 94,
+    bgColor: "bg-purple-100",
+  },
+  {
+    id: 4,
+    name: "Midnight Hoodie",
+    image: "/images/product-4.avif",
+    price: 97,
+    bgColor: "bg-orange-100",
+  },
+];
+
+export default function GirlProductsSection() {
+  return (
+    <section className="min-h-screen bg-white py-10 relative">
+      <div className="max-w-7xl mx-auto px-8">
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold mb-1 font-[Cabinet_Grotesk]">Summer 2025</h2>
+          <p className="text-sm text-gray-600">
+            Your go-to picks for a sun-soaked season.
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          {products.map((product) => (
+           <Link href={`/products/category`} key={product.id} className="group">
+             <div key={product.id} className="group cursor-pointer flex flex-col">
+              {/* Image container */}
+              <div
+                className={`relative rounded-3xl overflow-hidden h-[420px] ${product.bgColor} flex items-center justify-center`}
+              >
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  height={600}
+                  width={400}
+                />
+
+                {/* Out of Stock Overlay */}
+                {product.outOfStock && (
+                  <div className="absolute inset-0 bg-gray-900/60 flex items-center justify-center">
+                    <div className="bg-gray-800 text-white px-8 py-3 rounded-lg text-lg font-medium">
+                      Out of Stock
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Product Info */}
+             <div className="mt-4 text-left">
+                <h3 className="text-md font-normal group-hover:underline">
+                  {product.name}
+                </h3>
+
+                <div className="space-x-2">
+                  <span className="text-black text-sm">
+                    ${product.price}
+                  </span>
+                  {product.oldPrice && (
+                    <span className="text-gray-400 line-through">
+                      ${product.oldPrice}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+           </Link>
+          ))} 
+        </div>
+
+        {/* View All Link */}
+        <div className="text-center mt-14">
+          <a
+            href="/products/allproduct"
+            className="text-gray-900 font-medium flex items-center justify-center gap-2 hover:underline"
+          >
+            View All →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
