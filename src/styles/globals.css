@@ -1,10 +1,5 @@
 /* ========== Imports ========== */
-@import "@fontsource/roboto/100.css";
-@import "@fontsource/roboto/300.css";
-@import "@fontsource/roboto/400.css";
-@import "@fontsource/roboto/500.css";
-@import "@fontsource/roboto/700.css";
-@import "@fontsource/roboto/900.css";
+@import "./cabinet-grotesk.css";
 @import "tw-animate-css";
 @import "tailwindcss";
 
@@ -164,7 +159,7 @@ html,
 body {
   min-height: 100%;
   width: 100%;
-  font-family: "Roboto", var(--font-sans, sans-serif);
+  font-family: "CabinetGrotesk", var(--font-sans, sans-serif);
   background-color: var(--background);
   color: var(--foreground);
 }

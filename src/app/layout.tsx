@@ -2,9 +2,9 @@ import { ReactNode } from "react";
 
 import { Providers } from "../components/providers";
 import "../styles/globals.css";
-import Header from "@/components/common/header";
-import TrackSection from "@/components/common/tracksection";
-import Footer from "@/components/common/footer";
+import Header from "@/components/shared/header";
+import TrackSection from "@/components/shared/tracksection";
+import Footer from "@/components/shared/footer";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -14,8 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Header />
           <main className="flex-1">{children}</main>
           <div className="relative z-10 ">
-            
-        <TrackSection/>
+            <TrackSection />
             <Footer />
           </div>
         </Providers>
